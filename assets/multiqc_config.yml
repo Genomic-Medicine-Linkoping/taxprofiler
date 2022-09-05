@@ -21,12 +21,12 @@ run_modules:
   - bowtie2
   - kraken
   - malt
+  - kaiju
   - custom_content
 
-#extra_fn_clean_exts:
-#    - '_fastp'
-#    - '.pe.settings'
-#    - '.se.settings'
+extra_fn_clean_exts:
+  - '_pe-pp'
+  - '_pp'
 
 top_modules:
   - "fastqc":
@@ -47,8 +47,15 @@ top_modules:
       name: "Centrifuge"
       anchor: "centrifuge"
       target: "Centrifuge"
+      path_filters:
+        - "*.centrifuge.txt"
       doi: "10.1101/gr.210641.116"
       info: "is a very rapid and memory-efficient system for the classification of DNA sequences from microbial samples. The system uses a novel indexing scheme based on the Burrows-Wheeler transform (BWT) and the Ferragina-Manzini (FM) index. Note: Figure title"
       extra: "Note: plot title will say Kraken2 due to Centrifuge producing the same output format as Kraken. If activated, see the actual Kraken2 results in the section above."
+  - "kaiju":
+      name: "Kaiju"
+      anchor: "kaiju"
+      target: "Kaiju"
       path_filters:
-        - "*.centrifuge.txt"
+        - "*-kaijuDB.txt"
+

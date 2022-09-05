@@ -2,16 +2,16 @@
 // Run profiling
 //
 
-include { MALT_RUN                    } from '../../modules/nf-core/modules/malt/run/main'
-include { MEGAN_RMA2INFO              } from '../../modules/nf-core/modules/megan/rma2info/main'
-include { KRAKEN2_KRAKEN2             } from '../../modules/nf-core/modules/kraken2/kraken2/main'
-include { CENTRIFUGE_CENTRIFUGE       } from '../../modules/nf-core/modules/centrifuge/centrifuge/main'
-include { CENTRIFUGE_KREPORT          } from '../../modules/nf-core/modules/centrifuge/kreport/main'
-include { METAPHLAN3                  } from '../../modules/nf-core/modules/metaphlan3/main'
-include { KAIJU_KAIJU                 } from '../../modules/nf-core/modules/kaiju/kaiju/main'
-include { KAIJU_KAIJU2TABLE           } from '../../modules/nf-core/modules/kaiju/kaiju2table/main'
-include { DIAMOND_BLASTX              } from '../../modules/nf-core/modules/diamond/blastx/main'
-include { MOTUS_PROFILE               } from '../../modules/nf-core/modules/motus/profile/main'
+include { MALT_RUN                              } from '../../modules/nf-core/modules/malt/run/main'
+include { MEGAN_RMA2INFO as MEGAN_RMA2INFO_TSV  } from '../../modules/nf-core/modules/megan/rma2info/main'
+include { KRAKEN2_KRAKEN2                       } from '../../modules/nf-core/modules/kraken2/kraken2/main'
+include { CENTRIFUGE_CENTRIFUGE                 } from '../../modules/nf-core/modules/centrifuge/centrifuge/main'
+include { CENTRIFUGE_KREPORT                    } from '../../modules/nf-core/modules/centrifuge/kreport/main'
+include { METAPHLAN3                            } from '../../modules/nf-core/modules/metaphlan3/main'
+include { KAIJU_KAIJU                           } from '../../modules/nf-core/modules/kaiju/kaiju/main'
+include { KAIJU_KAIJU2TABLE                     } from '../../modules/nf-core/modules/kaiju/kaiju2table/main'
+include { DIAMOND_BLASTX                        } from '../../modules/nf-core/modules/diamond/blastx/main'
+include { MOTUS_PROFILE                         } from '../../modules/nf-core/modules/motus/profile/main'
 
 workflow PROFILING {
     take:
@@ -109,11 +109,11 @@ workflow PROFILING {
                                         [ meta_new, rma ]
                                 }
 
-        MEGAN_RMA2INFO (ch_maltrun_for_megan, params.malt_generate_megansummary )
+        MEGAN_RMA2INFO_TSV (ch_maltrun_for_megan, params.malt_generate_megansummary )
         ch_multiqc_files       = ch_multiqc_files.mix( MALT_RUN.out.log )
-        ch_versions            = ch_versions.mix( MALT_RUN.out.versions.first(), MEGAN_RMA2INFO.out.versions.first() )
+        ch_versions            = ch_versions.mix( MALT_RUN.out.versions.first(), MEGAN_RMA2INFO_TSV.out.versions.first() )
         ch_raw_classifications = ch_raw_classifications.mix( ch_maltrun_for_megan )
-        ch_raw_profiles        = ch_raw_profiles.mix( MEGAN_RMA2INFO.out.txt )
+        ch_raw_profiles        = ch_raw_profiles.mix( MEGAN_RMA2INFO_TSV.out.txt )
 
     }
 
@@ -185,7 +185,7 @@ workflow PROFILING {
                             }
 
         KAIJU_KAIJU ( ch_input_for_kaiju.reads, ch_input_for_kaiju.db)
-        KAIJU_KAIJU2TABLE (KAIJU_KAIJU.out.results, ch_input_for_kaiju.db, params.kaiju_taxon_name)
+        KAIJU_KAIJU2TABLE (KAIJU_KAIJU.out.results, ch_input_for_kaiju.db, params.kaiju_taxon_rank)
         ch_multiqc_files = ch_multiqc_files.mix( KAIJU_KAIJU2TABLE.out.summary )
         ch_versions = ch_versions.mix( KAIJU_KAIJU.out.versions.first() )
         ch_raw_classifications = ch_raw_classifications.mix( KAIJU_KAIJU.out.results )
@@ -209,7 +209,7 @@ workflow PROFILING {
         DIAMOND_BLASTX ( ch_input_for_diamond.reads, ch_input_for_diamond.db, ch_diamond_reads_format , [] )
         ch_versions        = ch_versions.mix( DIAMOND_BLASTX.out.versions.first() )
         ch_raw_profiles    = ch_raw_profiles.mix( DIAMOND_BLASTX.out.tsv )
-        ch_multiqc_files   = ch_multiqc_files.mix( DIAMOND_BLASTX.out.log ) 
+        ch_multiqc_files   = ch_multiqc_files.mix( DIAMOND_BLASTX.out.log )
 
     }
 

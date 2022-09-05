@@ -1,6 +1,8 @@
 sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
-2611,ERR5766174,ILLUMINA,,,/<path>/<to>/fasta/ERX5474930_ERR5766174_1.fa.gz
-2612,ERR5766176,ILLUMINA,/<path>/<to>/fastq/ERX5474932_ERR5766176_1.fastq.gz,/<path>/<to>/fastq/ERX5474932_ERR5766176_2.fastq.gz,
-2612,ERR5766180,ILLUMINA,/<path>/<to>/fastq/ERX5474936_ERR5766180_1.fastq.gz,,
-2613,ERR5766181,ILLUMINA,/<path>/<to>/fastq/ERX5474937_ERR5766181_1.fastq.gz,/<path>/<to>/fastq/ERX5474937_ERR5766181_2.fastq.gz,
-ERR3201952,ERR3201952,OXFORD_NANOPORE,/<path>/<to>/fastq/ERR3201952.fastq.gz,,
+pp1,pp1_S7,ILLUMINA,/archive/20220928_metagenomics_pp/pp1_S7_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp1_S7_L001_R2_001.fastq.gz,
+pp2,pp2_S8,ILLUMINA,/archive/20220928_metagenomics_pp/pp2_S8_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp2_S8_L001_R2_001.fastq.gz,
+pp3,pp3_S9,ILLUMINA,/archive/20220928_metagenomics_pp/pp3_S9_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp3_S9_L001_R2_001.fastq.gz,
+pp4,pp4_S10,ILLUMINA,/archive/20220928_metagenomics_pp/pp4_S10_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp4_S10_L001_R2_001.fastq.gz,
+pp5,pp5_S11,ILLUMINA,/archive/20220928_metagenomics_pp/pp5_S11_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp5_S11_L001_R2_001.fastq.gz,
+pp6,pp6_S12,ILLUMINA,/archive/20220928_metagenomics_pp/pp6_S12_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp6_S12_L001_R2_001.fastq.gz,
+pp7,pp7_S13,ILLUMINA,/archive/20220928_metagenomics_pp/pp7_S13_L001_R1_001.fastq.gz,/archive/20220928_metagenomics_pp/pp7_S13_L001_R2_001.fastq.gz,

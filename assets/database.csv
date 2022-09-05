@@ -1,0 +1,4 @@
+tool,db_name,db_params,db_path
+kraken2,kraken2DB,,/data/kraken2db/K2DB/
+centrifuge,centrifugeDB,,/data/centrifugeDB/
+kaiju,kaijuDB,,/data/kaijudb/

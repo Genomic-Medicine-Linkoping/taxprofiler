@@ -12,6 +12,8 @@
 
 ## Introduction
 
+> ⚠️ This pipeline is still under development! While the pipeline is usable, not all functionality will be available!
+
 <!-- TODO nf-core: Write a 1-2 sentence summary of what data the pipeline is for and what it does -->
 
 **nf-core/taxprofiler** is a bioinformatics best-practice analysis pipeline for taxonomic profiling of shotgun metagenomic data. It allows for in-parallel profiling with multiple profiling tools against multiple databases, produces standardised output tables.
@@ -25,6 +27,8 @@ On release, automated continuous integration tests run the pipeline on a full-si
 ## Pipeline summary
 
 <!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
+
+![](docs/images/taxprofiler_tube.png)
 
 1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
 2. Performs optional read pre-processing
